@@ -1,0 +1,303 @@
+/* CSS declarations go here */
+@import "{wolves:bourbon}/bourbon";
+
+
+// VARS
+$black: #000000;
+$fontH1: 7.5rem;
+$fontH2: 5.7rem;
+$fontH3: 4.4rem;
+$fontH4: 3.75rem;
+$white: rgba(255,255,255,1);
+$bkg: rgba(246,246,246,1);
+$grey_dark: rgba(48,48,48,1);
+$grey_med: rgba(132,132,132,1);
+$grey_light: rgba(200,200,200,1);
+$firm: rgba(0,164,211,1);
+$alert: rgba(255,90,60,1);
+
+.fontH1 {
+	font-size: $fontH1;
+}
+
+.fontH2 {
+	font-size: $fontH2;
+}
+
+.fontH3 {
+	font-size: $fontH3;
+}
+
+.fontH4 {
+	font-size: $fontH4;
+}
+
+@mixin fontH1 {
+	font-size: $fontH1;
+}
+
+@mixin fontH2 {
+	font-size: $fontH2;
+}
+
+@mixin fontH3 {
+	font-size: $fontH3;
+}
+
+@mixin fontH4 {
+	font-size: $fontH4;
+}
+
+.defaultInput {
+	display: block;
+	width: 100%;
+	border-width: 0;
+	background: $white;
+	border-radius: 3rem;
+	color: $firm;
+	font-size: $fontH2;
+	padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+	box-sizing: border-box;
+	margin: 3rem 0;
+	outline: none;
+	&[readonly] {
+		color: $grey_med;
+	}
+}
+
+.defaultTextarea {
+	display: block;
+	width: 100%;
+	border-width: 0;
+	background: $white;
+	border-radius: 3rem;
+	color: $firm;
+	font-size: $fontH2;
+	padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+	box-sizing: border-box;
+	margin: 3rem 0;
+	outline: none;
+}
+
+.defaultButton {
+	margin: 3rem 0;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	border-width: 0;
+	background: $firm;
+	border-radius: 3rem;
+	color: $white;
+	text-align: center;
+	font-size: $fontH2;
+	padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+	outline: none;
+	opacity: 0.5;
+	&.active {
+		opacity: 1;
+		cursor: pointer;
+	}
+
+	&.red {
+		background: $alert;
+		color: $white;
+	}
+
+	&.white {
+		background: $white;
+		color: $firm;
+	}
+}
+
+.blockLink {
+	display: block;
+	width: 100%;
+	padding: 3rem 0;
+	color: $firm;
+	text-decoration: none;
+	font-size: $fontH3;
+	text-align: center;
+}
+
+.defaultMessage {
+	text-align: center;
+	padding: 3rem 0;
+	font-size: $fontH3;
+	color: $grey_dark;
+	display: block;
+	width: 100%;
+}
+
+.formSubTitle {
+	padding: 3rem 0;
+	font-size: $fontH3;
+	color: $grey_dark;
+	display: block;
+	width: 100%;
+}
+
+.formDescr {
+	padding: 0 0 3rem 0;
+	font-size: $fontH4;
+	color: $grey_med;
+	display: block;
+	width: 100%;
+}
+
+.defaultHint {
+	text-align: center;
+	padding: 3rem 0;
+	font-size: $fontH3;
+	color: $grey_med;
+	display: block;
+	width: 100%;
+}
+
+.red {
+	color: $alert;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	background: $bkg;
+}
+
+body.modalOpen {
+	overflow: hidden;
+}
+
+.err {
+	text-align: center;
+	color: $alert;
+	border: 1px solid $alert;
+	border-radius: 3rem;
+	padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+	font-size: $fontH3;
+	&.hidden {
+		display: none;
+	}
+}
+
+#render-target {
+	background: $bkg;
+	min-height: 100vh;
+	padding: 0;
+	// padding: 0 7.5rem;
+	// overflow: scroll;
+	&>div {
+		padding: 5rem 0 0 0;
+	}
+}
+
+.loginForm {
+	padding: 0 0 7.5rem 0;
+	form {
+		margin: 0;
+	}
+}
+
+.listItem {
+	@include display(flex);
+	@include flex-direction(row);
+	@include justify-content(space-between);
+	@include align-items(center);
+}
+
+.paddedContent {
+	padding: 0 7.5rem 5rem 7.5rem;
+}
+
+.modalOuter {
+	display: none;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	background: $bkg;
+	width: 85rem;
+	// margin-left: -7.5rem;
+	padding: 0 7.5rem;
+	z-index: 5;
+	&.open {
+		display: block;
+	}
+
+	&.withFooter {
+		.text, .footerButtons {
+			@include flex-grow(4);
+			@include display(flex);
+			@include flex-direction(column);
+			@include justify-content(flex-end);
+		}
+	}
+
+	.modal {
+		@include display(flex);
+		@include flex-direction(column);
+		@include justify-content(center);
+		height: 100%;
+
+		.footerButtons {
+			padding-bottom: 5rem;
+		}
+
+		.button {
+			cursor: pointer;
+			&.white {
+				background: $white;
+				color: $firm;
+			}
+
+			&.bold {
+				font-weight: bold;
+			}
+
+			&.spacer {
+				visibility: hidden;
+			}
+		}
+	}
+}
+
+.lightbox {
+	display: none;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	background: $bkg;
+	width: 100rem;
+	z-index: 5;
+	// margin-left: -7.5rem;
+	// padding: 0 7.5rem;
+	&.open {
+		display: block;
+	}
+
+	.photo {
+		width: 100rem;
+		height: 100vh;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	.close {
+		position: absolute;
+		font-size: $fontH2;
+		z-index: 10;
+		padding: 5rem 7.5rem;
+		left: 0;
+		top: 0;
+		cursor: pointer;
+	}
+
+	.button {
+		position: absolute;
+		bottom: 5rem;
+		width: 85rem;
+		left: 7.5rem;
+	}
+}
+
