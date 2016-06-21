@@ -36,7 +36,7 @@ ReactRouterSSR.Run(AppRoutes, {
 	disableSSR: false,
 
 	preRender: function(req, res) {
-		console.log('[ReactRouterSSR.preRender] req = ', req, ', res = ', res);
+		// console.log('[ReactRouterSSR.preRender] req = ', req, ', res = ', res);
 		// ReactCookie.plugToRequest(req, res);
 	},
 

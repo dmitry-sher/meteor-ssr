@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import * as util from '/lib/util';
+import cookie from 'react-cookie';
 
 class LoginForm extends Component {
 	constructor(props) {
@@ -37,6 +38,9 @@ class LoginForm extends Component {
 					return;
 					// this.refs.
 				}
+
+				cookie.save("meteor_user_id", Meteor.userId(), { path: '/' });
+				cookie.save("meteor_token", localStorage.getItem("Meteor.loginToken"), { path: '/' });
 				this.context.router.push('/');
 				// console.log('[LoginForm.onSubmit callback] err = ', err, ', res = ', res);
 			});

@@ -6,8 +6,10 @@ import {ReactRouterSSR} from 'meteor/reactrouter:react-router-ssr';
 import * as util from '/lib/util';
 require('/lib/accounts');
 require('/lib/subscribe');
+require('/lib/methods');
 import App from '/pages/App';
 import HomePage from '/pages/HomePage';
+import cookie from 'react-cookie';
 Meteor.startup(() => {
   // code to run on server at startup
   var cnt = Meteor.users.find().count();
@@ -34,11 +36,7 @@ ReactRouterSSR.Run(AppRoutes, {
 
 	preRender: function(req, res) {
 		// console.log('[ReactRouterSSR.preRender] req = ', req, ', res = ', res);
-		// ReactCookie.plugToRequest(req, res);
+		cookie.plugToRequest(req, res);
 	},
 
 });
-
-if (Meteor.isServer) {
-	console.log('[server]')
-}
